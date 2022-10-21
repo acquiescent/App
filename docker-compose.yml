@@ -22,5 +22,20 @@ services:
       - "1433:1433"
     volumes:
       - volume:/app
+# Start of new edits
+  frontend:
+    container_name: weather_frontend
+    environment:
+      - DATABASE_PUBLIC_URL=db
+    build: ../MvcWeatherRecord/
+    volumes:
+      - volume:/app
+    ports:
+      - "8080:80"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - api
+# End of new edits
 volumes:
   volume:
